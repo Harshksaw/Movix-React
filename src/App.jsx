@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom"; 
+import { StrictMode, useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { fetchDataFromApi } from "./utils/api";
 
@@ -24,15 +24,15 @@ function App() {
   console.log(url);
 
   useEffect(() => {
-    apiTesting();
-  },[]);
-  const apiTesting = () => {
+    fetchApiConfig();
+  }, []);
+  const fetchApiConfig = () => {
     fetchDataFromApi("/configuration").then((res) => {
-      console.log(res);
+      console.log("Api ->", res);
       const url = {
-        backdrop: res.images.secure_base_url +  "orignal",
-        orignal : res.images.secure_base_url +  "orignal",
-        profile: res.images.secure_base_url +  "orignal",
+        backdrop: res.images.secure_base_url + "orignal",
+        poster: res.images.secure_base_url + "orignal",
+        profile: res.images.secure_base_url + "orignal",
       }
 
       dispatch(getApiConfiguration(url));
@@ -40,17 +40,20 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Header/>
-      <Routes>
-        <Route path="/"  element ={<Home/>}/>
-        <Route path="/:mediaType/:id"  element ={<Details/>}/>
-        <Route path="/search/:query"  element ={<SearchResult/>}/>
-        <Route path="/explore/:mediaType"  element ={<Explore/>}/>
-        <Route path="*"  element ={<pageNotFound/>}/>
-      </Routes>
-      <Footer/>
-    </BrowserRouter>
+
+
+      <BrowserRouter>
+        {/* <Header/> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/:mediaType/:id" element={<Details />} />
+          <Route path="/search/:query" element={<SearchResult />} />
+          <Route path="/explore/:mediaType" element={<Explore />} />
+          <Route path="*" element={<pageNotFound />} />
+        </Routes>
+        {/* <Footer/> */}
+      </BrowserRouter>
+
   );
 }
 
