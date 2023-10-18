@@ -1,4 +1,4 @@
-import { useState ,useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom"; 
 import "./App.css";
 import { fetchDataFromApi } from "./utils/api";
@@ -12,7 +12,8 @@ import Home from "./pages/home/Home";
 import Details from "./pages/details/Details";
 import SearchResult from "./pages/searchResult/SearchResult";
 import Explore from "./pages/explore/Explore";
-import pageNotFound from "./pages/404/pageNotFound";
+
+// import pageNotFound from './pages/404/pageNotFound';
 
 
 function App() {
@@ -26,9 +27,15 @@ function App() {
     apiTesting();
   },[]);
   const apiTesting = () => {
-    fetchDataFromApi("/movie/popular").then((res) => {
+    fetchDataFromApi("/configuration").then((res) => {
       console.log(res);
-      dispatch(getApiConfiguration(res));
+      const url = {
+        backdrop: res.images.secure_base_url +  "orignal",
+        orignal : res.images.secure_base_url +  "orignal",
+        profile: res.images.secure_base_url +  "orignal",
+      }
+
+      dispatch(getApiConfiguration(url));
     });
   };
 
