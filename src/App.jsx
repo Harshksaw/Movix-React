@@ -1,4 +1,4 @@
-import { StrictMode, useEffect } from "react";
+import {  useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { fetchDataFromApi } from "./utils/api";
@@ -30,9 +30,9 @@ function App() {
     fetchDataFromApi("/configuration").then((res) => {
       console.log("Api ->", res);
       const url = {
-        backdrop: res.images.secure_base_url + "orignal",
-        poster: res.images.secure_base_url + "orignal",
-        profile: res.images.secure_base_url + "orignal",
+        backdrop: res.images.secure_base_url + "w500",
+        poster: res.images.secure_base_url + "w500",
+        profile: res.images.secure_base_url + "w500",
       }
 
       dispatch(getApiConfiguration(url));
