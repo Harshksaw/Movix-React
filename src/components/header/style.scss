@@ -1,6 +1,4 @@
-@import "../../../mixins.scss";
-
-
+@import '../../../mixins.scss';
 
 .header {
     position: fixed;
@@ -13,7 +11,7 @@
     transition: all ease 0.5s;
     z-index: 2;
     &.top {
-        background: rgba(0, 0, 0, 0.25);
+        background: rgba(0, 0, 0, 0.50);
         backdrop-filter: blur(3.5px);
         -webkit-backdrop-filter: blur(3.5px);
     }
@@ -32,6 +30,8 @@
     .logo {
         cursor: pointer;
         img {
+
+            margin-left: -2rem;
             height: 50px;
         }
     }
@@ -47,7 +47,7 @@
             display: flex;
             align-items: center;
             margin: 0 15px;
-            color: white;
+            color: rgb(247, 163, 163);
             font-weight: 500;
             position: relative;
             &.searchIcon {
@@ -65,13 +65,14 @@
 
     .mobileMenuItems {
         display: flex;
-        align-items: center;
-        gap: 20px;
+        align-items: space-between;
+        gap: 15px;
+        margin-right: 45px;
         @include md {
             display: none;
         }
         svg {
-            font-size: 18px;
+            font-size: 20px;
             color: white;
         }
     }
@@ -106,18 +107,23 @@
     }
 
     .searchBar {
-        width: 100%;
+        width: 80%;
         height: 60px;
         background-color: white;
         position: absolute;
+
         top: 60px;
+        left: 10%;
         animation: mobileMenu 0.3s ease forwards;
         .searchInput {
             display: flex;
+            justify-content: center;
             align-items: center;
             height: 40px;
+
             margin-top: 10px;
-            width: 100%;
+            width: 90%;
+
             svg {
                 font-size: 20px;
                 flex-shrink: 0;
@@ -125,7 +131,7 @@
                 cursor: pointer;
             }
             input {
-                width: 100%;
+                width: 80%;
                 height: 50px;
                 background-color: white;
                 outline: 0;
