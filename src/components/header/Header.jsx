@@ -18,69 +18,58 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(()=>{
-    //whenever changin page
-    window.scrollTo(0, 0)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, [location]);
 
-  },[location])
-
-
-  const controlNavbar = () => {
+const controlNavbar = () => {
     if (window.scrollY > 200) {
-      console.log("200")
+      console.log(scrollY)
       if (window.scrollY > lastScrollY && !mobileMenu) {
-
-        setShow("hide")
-      } else {
-
-        setShow("show")
-      }
+            setShow("hide");
+        } else {
+            setShow("show");
+        }
     } else {
-      setShow("top")
+        setShow("top");
     }
     setLastScrollY(window.scrollY);
+};
 
-  }
-
-
-  useEffect(() => {
+useEffect(() => {
     window.addEventListener("scroll", controlNavbar);
-
-
     return () => {
-      window.removeEventListener("scroll", controlNavbar)
+        window.removeEventListener("scroll", controlNavbar);
+    };
+}, [lastScrollY]);
+
+const searchQueryHandler = (event) => {
+    if (event.key === "Enter" && query.length > 0) {
+        navigate(`/search/${query}`);
+        setTimeout(() => {
+            setShowSearch(false);
+        }, 1000);
     }
-  }, [lastScrollY])
+};
 
-
-  const openSearch = () => {
+const openSearch = () => {
     setMobileMenu(false);
     setShowSearch(true);
-  };
+};
 
-  const openMobileMenu = () => {
+const openMobileMenu = () => {
     setMobileMenu(true);
     setShowSearch(false);
-  };
-  const searchQueryHandler = (event) => {
-    if (event.key === "Enter" && query.length > 0) {
-      navigate(`/search/${query}`);
-      setTimeout(() => {
-        setShowSearch(false)
-      })
-    }
-  };
-  const navigationHandler = (type) => {
-    if (type === 'movie') {
-      navigate("/explore/movie")
+};
 
+const navigationHandler = (type) => {
+    if (type === "movie") {
+        navigate("/explore/movie");
     } else {
-      navigate("/explore/tv");
-
+        navigate("/explore/tv");
     }
     setMobileMenu(false);
-
-  }
+};
 
 
 
