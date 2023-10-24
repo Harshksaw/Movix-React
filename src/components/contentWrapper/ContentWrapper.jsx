@@ -1,4 +1,4 @@
-import React from "react";
+
 
 import "./style.scss";
 
@@ -7,6 +7,3 @@ const ContentWrapper = ({ children }) => {
 };
 
 export default ContentWrapper;
-
-
-
