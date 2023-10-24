@@ -12,8 +12,9 @@ import ContentWrapper from "../contentWrapper/ContentWrapper";
 
 import PosterFallback from "../../assets/no-poster.png";
 // import CircleRating from "../circleRating/CircleRating";
-// import Genres from "../genres/Genres";
+import Genres from "../genres/Genres";
 import Img from '../lazyloadImage/Img';
+import CircleRating from "../circleRating/CircleRating";
 
 export default function Carousel({ data, loading }) {
 
@@ -77,6 +78,9 @@ export default function Carousel({ data, loading }) {
                                         <Img
                                             src={posterUrl}
                                         />
+                                        <CircleRating rating={item.vote_average.toFixed(1)} 
+                                        />
+                                        <Genres data = {item.genre_ids.slice(0,2)} />
                                     </div>
                                     <div className="textBlock">
                                         <span className="title">
