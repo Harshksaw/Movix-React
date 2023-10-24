@@ -1,6 +1,8 @@
 import './style.scss';
 import HeroBanner from './heroBanner/HeroBanner';
 import Trending from './trending/Trending';
+import Popular from './Popular/Popular';
+import TopRated from './TopRated/TopRated';
 
 
 export default function Home() {
@@ -8,7 +10,9 @@ export default function Home() {
     <div className='homePage'>
         <HeroBanner/>
         <Trending/>
-        <div style={{height: 1500}}></div>
+        <Popular/>
+        <TopRated/>
+
     </div>
   )
 }

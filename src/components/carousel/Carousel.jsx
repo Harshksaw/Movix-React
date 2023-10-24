@@ -16,7 +16,7 @@ import Genres from "../genres/Genres";
 import Img from '../lazyloadImage/Img';
 import CircleRating from "../circleRating/CircleRating";
 
-export default function Carousel({ data, loading }) {
+export default function Carousel({ data, loading , endpoint}) {
 
     const carouselContainer = useRef();
 
@@ -26,6 +26,17 @@ export default function Carousel({ data, loading }) {
     const navigate = useNavigate();
 
     const navigation = (dir) => {
+        const container =  carouselContainer.current;
+        const scrollAmount = dir ===
+        "left" ? container.scrollLeft - (container.offsetWidth + 20)
+        
+        :  container.scrollLeft + (container.offsetWidth + 20)
+
+        container.scrollTo({
+            left: scrollAmount,
+            behavior: "smooth",
+        })
+
     };
 
     const skItem = ()=>{
@@ -63,7 +74,9 @@ export default function Carousel({ data, loading }) {
 
             {
                 !loading ? (
-                    <div className="carouselItems">
+                    <div className="carouselItems"
+                    
+                    ref={carouselContainer}>
                         {data?.map((item) => {
 
                             const posterUrl = item.poster_path ?
@@ -72,7 +85,9 @@ export default function Carousel({ data, loading }) {
 
                                 <div
                                     className="carouselItem"
-                                    key={item.id}>
+                                    key={item.id}
+                                    onClick={()=>navigate(`/${item.media_type || endpoint}/${item.id}`)}
+                                    >
 
                                     <div className="posterBlock">
                                         <Img
