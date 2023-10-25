@@ -20,7 +20,7 @@ function App() {
   const dispatch = useDispatch();
   const { url } = useSelector((state) => state.home);
 
-  console.log("api")
+  // console.log("api")
   console.log(url);
 
   useEffect(() => {

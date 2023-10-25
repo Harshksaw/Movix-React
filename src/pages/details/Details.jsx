@@ -9,6 +9,7 @@ export default function Details() {
 
     return (
     <div>
+      
       <DetailsBanner/>
 
     </div>
