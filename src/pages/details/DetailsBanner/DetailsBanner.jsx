@@ -14,16 +14,21 @@ import PosterFallback from "../../../assets/no-poster.png";
 import Img from "../../../components/lazyloadImage/Img";
 import { PlayIcon } from '../Playbtn';
 
-const DetailsBanner = () => {
+const DetailsBanner = ({video , crew}) => {
     const { mediaType, id } = useParams(); //from caoursel
     const { data, loading } = useFetch(`/${mediaType}/${id}`)
     const { url } = useSelector((state) => state.home)
-    console.log(url);
-    // const toHoursAndMinutes = (totalMinutes) => {
-    //     const hours = Math.floor(totalMinutes / 60);
-    //     const minutes = totalMinutes % 60;
-    //     return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
-    // };
+    // console.log(url);
+
+    const director    = crew?.filter((f)=> f.job === 'Director');
+    const writer = crew?.filter((f)=> f.job === "ScreenPlay" || f.job === "Writer" )
+    // console.log(crew)
+
+    const toHoursAndMinutes = (totalMinutes) => {
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+        return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
+    };
     const _genres = data?.genres?.map((g) => g.id);
 
 
@@ -124,13 +129,75 @@ const DetailsBanner = () => {
                                                     </span>
                                                 </div>
                                             )}
+                                            {data.runtime && (
+                                                <div className="infoItem">
+                                                    <span className="text bold">
+                                                        Runtime:{" "}
+                                                    </span>
+                                                    <span className="text">
+                                                        {toHoursAndMinutes(
+                                                            data.runtime
+                                                        )}
+                                                    </span>
+                                                </div>
+                                            )}
+                                                
 
                                         </div>
+                                        <div>
+                                            {director?.length > 0  &&(
+                                                <div className="info ">
+                                                    <div className="text-bold">
+                                                        Director{" "}
+                                                    </div>
+                                                    <div className="text">
+                                                        {director?.map((d, i )=>(
+                                                            <span key={i}>
+                                                                {d.name}
+                                                                {director.length -1 !== i && ", "}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
 
+                                            {writer?.length > 0  &&(
+                                                <div className="info ">
+                                                    <div className="text-bold">
+                                                        Writer{" "}
+                                                    </div>
+                                                    <div className="text">
+                                                        {writer?.map((d, i )=>(
+                                                            <span key={i}>
+                                                                {d.name}
+                                                                {writer.length -1 !== i && ", "}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {data?.length > 0  &&(
+                                                <div className="info ">
+                                                    <div className="text-bold">
+                                                        Writer{" "}
+                                                    </div>
+                                                    <div className="text">
+                                                        {data?.created_by?.map((d, i )=>(
+                                                            <span key={i}>
+                                                                {d.name}
+                                                                {data.created_by.length -1 !== i && ", "}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
 
-
+                                        </div>
                                     </div>
                                 </div>
+
+
+
 
                             </ContentWrapper>
                         </React.Fragment>
