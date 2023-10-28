@@ -16,7 +16,7 @@ import Genres from "../genres/Genres";
 import Img from '../lazyloadImage/Img';
 import CircleRating from "../circleRating/CircleRating";
 
-export default function Carousel({ data, loading , endpoint}) {
+export default function Carousel({ data, loading , endpoint , title}) {
 
     const carouselContainer = useRef();
 
@@ -62,7 +62,9 @@ export default function Carousel({ data, loading , endpoint}) {
         className="carousel"
 
     >
+
         <ContentWrapper>
+            {title && <div className="carouselTitle">{title}</div>}
             <BsFillArrowLeftCircleFill
                 className="carouselLeftNav arrow"
                 onClick={() => navigation("left")}
