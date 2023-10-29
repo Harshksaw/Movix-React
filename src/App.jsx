@@ -6,13 +6,13 @@ import { fetchDataFromApi } from "./utils/api.js";
 import { getApiConfiguration , getGenres} from "./store/homeSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 //compoenets pages import 
-import Header from "./components/header/Header.jsx";
-import Footer from "./components/footer/Footer.jsx";
-import Home from "./pages/home/Home.jsx";
-import Details from "./pages/details/Details.jsx";
-import SearchResult from "./pages/searchResult/SearchResult.jsx";
-import Explore from "./pages/explore/Explore.jsx";
-import PageNotFound from "./pages/404/PageNotFound";
+import Header from './components/header/Header';
+import Home from './pages/home/Home';
+import Details from './pages/details/Details';
+import SearchResult from './pages/searchResult/SearchResult';
+import Explore from './pages/explore/Explore';
+import PageNotFound from './pages/404/PageNotFound';
+import Footer from './components/footer/Footer';
 
 
 
@@ -30,7 +30,7 @@ function App() {
   }, []);
   const fetchApiConfig = () => {
     fetchDataFromApi("/configuration").then((res) => {
-      console.log("Api ->", res);
+
       const url = {
         backdrop: res.images.secure_base_url + "w500",
         poster: res.images.secure_base_url + "w500",
