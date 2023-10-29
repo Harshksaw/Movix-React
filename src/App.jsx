@@ -13,7 +13,7 @@ import SearchResult from './pages/searchResult/SearchResult';
 import Explore from './pages/explore/Explore';
 
 import Footer from './components/footer/Footer';
-import PageNotFound from './pages/404/PageNotFound.jsx';
+import PageNotFound from './pages/notfound/PageNotFound';
 
 
 
