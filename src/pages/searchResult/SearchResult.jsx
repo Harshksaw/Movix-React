@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import InfiniteScroll from 'react-infinite-scroll-component';
 import "./style.scss";
 import { useParams } from "react-router-dom";
-import { fetchDataForSearch, fetchDataFromApi } from "../../utils/api.jsx";
+import { fetchDataForSearch, fetchDataFromApi } from "../../utils/api.js";
 import Spinner from "../../components/spinner/Spinner.jsx";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper.jsx";
-import InfiniteScroll from "react-infinite-scroll-component.jsx";
 import MovieCard from "../../components/movieCard/MovieCard.jsx";
 
 export default function SearchResult() {
