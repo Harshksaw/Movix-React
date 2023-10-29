@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.scss";
 import { useParams } from "react-router-dom";
-import { fetchDataFromApi } from "../../utils/api";
+import { fetchDataForSearch, fetchDataFromApi } from "../../utils/api";
 import Spinner from "../../components/spinner/Spinner";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -14,8 +14,9 @@ export default function SearchResult() {
   const { query } = useParams();
   const fetchInitialData = () => {
     setLoading(true);
-    // search/multi?query=batman&include_adult=false&language=en-US&page=1'
-    fetchDataFromApi(`/search/multi?query=${query}&include_adult=false&language=en-US&page=${pageNum}`).then(
+
+    // fetchDataFromApi(`/search/multi?query=${query}&include_adult=false&language=en-US&page=${pageNum}`).then(
+    fetchDataForSearch(`/search/multi?query=${query}&page=${pageNum}`).then(
       (res) => {
         setData(res);
         setPageNum((prev) => prev + 1);
@@ -27,8 +28,8 @@ export default function SearchResult() {
 
   const fetchNextPageData = () => {
 
-    fetchDataFromApi(`/search/multi?query=${query}&include_adult=false&language=en-US&page=${pageNum}`).then(
-
+    // fetchDataFromApi(`/search/multi?query=${query}&include_adult=false&language=en-US&page=${pageNum}`).then(
+    fetchDataForSearch(`/search/multi?query=${query}&page=${pageNum}`).then(
       (res) => {
         if (data?.results) {
           setData({
@@ -56,9 +57,8 @@ export default function SearchResult() {
           {data?.results?.length > 0 ? (
             <>
               <div className="pageTitle">
-                {`Search ${
-                  data?.total_results > 1 ? "results" : "result"
-                } of '${query}'`}
+                {`Search ${data?.total_results > 1 ? "results" : "result"
+                  } of '${query}'`}
               </div>
               <InfiniteScroll
                 className="content"
