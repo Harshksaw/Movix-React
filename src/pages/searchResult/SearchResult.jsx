@@ -14,7 +14,8 @@ export default function SearchResult() {
   const { query } = useParams();
   const fetchInitialData = () => {
     setLoading(true);
-    fetchDataFromApi(`/search/multi?query=${query}&include_adult=false&language=en-US&page=1`).then(
+    // search/multi?query=batman&include_adult=false&language=en-US&page=1'
+    fetchDataFromApi(`/search/multi?query=${query}&include_adult=false&language=en-US&page=${pageNum}`).then(
       (res) => {
         setData(res);
         setPageNum((prev) => prev + 1);
@@ -32,7 +33,7 @@ export default function SearchResult() {
         if (data?.results) {
           setData({
             ...data,
-            results: [...data.results, ...res.results],
+            results: [...data?.results, ...res.results],
           });
         } else {
           setData(res);
