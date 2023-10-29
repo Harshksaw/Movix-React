@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { fetchDataFromApi } from "./utils/api.js";
 
-import { getApiConfiguration , getGenres} from "./store/homeSlice.jsx";
+import { getApiConfiguration , getGenres} from "./store/homeSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 //compoenets pages import 
 import Header from "./components/header/Header.jsx";
@@ -12,8 +12,9 @@ import Home from "./pages/home/Home.jsx";
 import Details from "./pages/details/Details.jsx";
 import SearchResult from "./pages/searchResult/SearchResult.jsx";
 import Explore from "./pages/explore/Explore.jsx";
+import PageNotFound from "./pages/404/PageNotFound";
 
-// import pageNotFound from './pages/404/pageNotFound';
+
 
 
 function App() {
@@ -71,7 +72,7 @@ function App() {
           <Route path="/:mediaType/:id" element={<Details />} />
           <Route path="/search/:query" element={<SearchResult />} />
           <Route path="/explore/:mediaType" element={<Explore />} />
-          <Route path="*" element={<pageNotFound />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer/>
       </BrowserRouter>
