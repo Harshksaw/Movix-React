@@ -14,9 +14,7 @@ export default function SearchResult() {
   const { query } = useParams();
   const fetchInitialData = () => {
     setLoading(true);
-    //get ipagenum 1 initally
-    // fetchDataFromApi(`/search/multi?query=${query}&page=${pageNum}`).then((res) => {
-    fetchDataFromApi(`/search/multi?query=${query}&page=${pageNum}`).then(
+    fetchDataFromApi(`/search/multi?query=${query}&include_adult=false&language=en-US&page=1`).then(
       (res) => {
         setData(res);
         setPageNum((prev) => prev + 1);
@@ -27,7 +25,9 @@ export default function SearchResult() {
 
 
   const fetchNextPageData = () => {
-    fetchDataFromApi(`/search/multi?query=${query}&page=${pageNum}`).then(
+
+    fetchDataFromApi(`/search/multi?query=${query}&include_adult=false&language=en-US&page=${pageNum}`).then(
+
       (res) => {
         if (data?.results) {
           setData({
