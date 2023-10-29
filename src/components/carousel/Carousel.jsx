@@ -8,13 +8,13 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs"; //conveert data format to
 
-import ContentWrapper from "../contentWrapper/ContentWrapper";
+import ContentWrapper from "../contentWrapper/ContentWrapper.jsx";
 
 import PosterFallback from "../../assets/no-poster.png";
-// import CircleRating from "../circleRating/CircleRating";
-import Genres from "../genres/Genres";
-import Img from '../lazyloadImage/Img';
-import CircleRating from "../circleRating/CircleRating";
+
+import Genres from "../genres/Genres.jsx";
+import Img from '../lazyloadImage/Img.jsx';
+import CircleRating from "../circleRating/CircleRating.jsx";
 
 export default function Carousel({ data, loading , endpoint , title}) {
 

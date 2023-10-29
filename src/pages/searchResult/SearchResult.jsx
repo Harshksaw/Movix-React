@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./style.scss";
 import { useParams } from "react-router-dom";
-import { fetchDataForSearch, fetchDataFromApi } from "../../utils/api";
-import Spinner from "../../components/spinner/Spinner";
-import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
-import InfiniteScroll from "react-infinite-scroll-component";
-import MovieCard from "../../components/movieCard/MovieCard";
+import { fetchDataForSearch, fetchDataFromApi } from "../../utils/api.jsx";
+import Spinner from "../../components/spinner/Spinner.jsx";
+import ContentWrapper from "../../components/contentWrapper/ContentWrapper.jsx";
+import InfiniteScroll from "react-infinite-scroll-component.jsx";
+import MovieCard from "../../components/movieCard/MovieCard.jsx";
 
 export default function SearchResult() {
   const [data, setData] = useState(null);
